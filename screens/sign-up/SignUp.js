@@ -1,15 +1,16 @@
-import { View, Text } from "react-native"
+import { View, Text, Alert } from "react-native"
 import AccountInfoBox from "../../component/accountInfoBox/AccountInfoBox"
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
+import { createUser, signIn, verifyToken } from "../../services/UserService"
 
 
 const SignUp = () => {
-    const navigation=useNavigation()
+    const navigation = useNavigation()
 
     const [isCreateAccount, setIsCreateAccount] = useState(true)
     const [isShowPassword, setIsShowPassword] = useState(true)
@@ -20,31 +21,81 @@ const SignUp = () => {
     const [emailSignIn, setEmailSignIn] = useState(null)
     const [passwordSignIn, setpasswordSignIn] = useState(null)
 
-    const handleContinue=()=>{
-        
-        if(isCreateAccount){
-            //new account will be created
-            //check if fullname,email,and password is not null
 
-            if(fullName&&email&&password.length>=8){
-                navigation.navigate("VerifyEmail")
+    useEffect(()=>{
+        if(!isCreateAccount){
+            verify()
+        }
+
+    },[isCreateAccount])
+
+    const verify = async () => {
+        const token = await AsyncStorage.getItem("token", token)
+
+        try {
+            const data = await verifyToken(token)
+            console.log("data", data)
+            if (data) {
+                Alert.alert(   "successful...")
             }
-
+        } catch (error) {
+            console.log(error.response.status)
             
-
-
-        }else{
-            //sign in
-
-            if(emailSignIn&&passwordSignIn.length>=8){
-                navigation.navigate("VerifyEmail")
-            }
-            
-
         }
     }
 
-    
+
+    const handleContinue = async () => {
+
+        if (isCreateAccount) {
+            //new account will be created
+            //check if fullname,email,and password is not null
+
+            if (fullName && email && password.length >= 8) {
+                try {
+                    const data = await createUser(fullName, email, password)
+                    console.log("data", data.email, data.password, data.fullName, "id::::", data._id)
+                    Alert.alert("Thanks")
+                } catch (error) {
+                    console.log("!!!", error)
+                }
+
+                //navigation.navigate("VerifyEmail")
+            }
+
+
+
+
+        } else {
+            //sign in
+
+            if (emailSignIn && passwordSignIn.length >= 8) {
+                try {
+                    const data = await signIn(fullName, email, password)
+                    console.log(data.token)
+                    Alert.alert("Thanks ")
+                    AsyncStorage.setItem("token", data.token)
+
+                      
+                    //navigate to home screen
+                } catch (error) {
+                    console.log("!!!", error)
+                }
+                //navigation.navigate("VerifyEmail")
+            }
+
+
+        }
+
+        // setFullName("")
+        // setEmail("")
+        // setpassword("")
+        // setEmailSignIn("")
+        // setpasswordSignIn("")
+
+    }
+
+
 
 
 
@@ -55,13 +106,13 @@ const SignUp = () => {
         <View style={{ flex: 1, padding: 15, backgroundColor: "#f6f6f6" }}>
 
 
- 
+
 
             <Text>Welcome</Text>
             {isCreateAccount ? (
-                <View style={{ borderWidth:1, borderColor:"#dddddd"}}  >
+                <View style={{ borderWidth: 1, borderColor: "#dddddd" }}  >
 
-                    <View style={{ backgroundColor: "#ffffff", padding: 15, borderBottomWidth:1,borderBottomColor:"#dddddd" }}>
+                    <View style={{ backgroundColor: "#ffffff", padding: 15, borderBottomWidth: 1, borderBottomColor: "#dddddd" }}>
                         <TouchableOpacity onPress={() => { setIsCreateAccount(!isCreateAccount) }}>
                             <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 20 }}>
                                 <FontAwesome name="dot-circle-o" size={24} color="orange" style={{ marginRight: 10, }} />
@@ -70,8 +121,8 @@ const SignUp = () => {
                         </TouchableOpacity>
 
                         <AccountInfoBox title="First and last name" state={fullName} setState={setFullName} />
-                        <AccountInfoBox title="Mobile number or email" state={email}  setState={setEmail}/>
-                        <AccountInfoBox title="Create a password" state={password}  setState={setpassword}/>
+                        <AccountInfoBox title="Mobile number or email" state={email} setState={setEmail} />
+                        <AccountInfoBox title="Create a password" state={password} setState={setpassword} isShowPassword={isShowPassword} />
 
                         <TouchableOpacity style={{ marginBottom: 10 }} onPress={() => { setIsShowPassword(!isShowPassword) }}>
 
@@ -86,7 +137,7 @@ const SignUp = () => {
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity onPress={()=>handleContinue()} style={{ backgroundColor: "#ffd815", height: 50, justifyContent: "center", alignItems: "center", borderRadius: 10, marginBottom: 30 }}>
+                        <TouchableOpacity onPress={() => handleContinue()} style={{ backgroundColor: "#ffd815", height: 50, justifyContent: "center", alignItems: "center", borderRadius: 10, marginBottom: 30 }}>
                             <Text>Continue</Text>
                         </TouchableOpacity>
 
@@ -96,23 +147,23 @@ const SignUp = () => {
                             and{' '}
                             <TouchableOpacity><Text style={{ color: '#0066c0', textDecorationLine: 'underline' }}>Privacy Notice</Text></TouchableOpacity>
                         </Text>
-                       
+
 
 
                     </View>
                     <TouchableOpacity style={{ backgroundColor: "#f3f3f3", padding: 15 }} onPress={() => { setIsCreateAccount(!isCreateAccount) }}>
-                            <View style={{ flexDirection: "row", alignItems: "center", }}>
-                                <FontAwesome name="circle-o" size={24} color="gray" />
-                                <Text style={{ marginLeft: 10 }}>Sign in Already a customer?</Text>
-                            </View>
-                        </TouchableOpacity>
+                        <View style={{ flexDirection: "row", alignItems: "center", }}>
+                            <FontAwesome name="circle-o" size={24} color="gray" />
+                            <Text style={{ marginLeft: 10 }}>Sign in Already a customer?</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
 
             ) :
                 (
 
-                    <View style={{borderWidth:1,borderColor:"#dddddd"}}>
-                        <TouchableOpacity style={{ backgroundColor: "#f3f3f3", padding: 15 ,borderWidth:1,borderColor:"#dddddd"}} onPress={() => { setIsCreateAccount(!isCreateAccount) }}>
+                    <View style={{ borderWidth: 1, borderColor: "#dddddd" }}>
+                        <TouchableOpacity style={{ backgroundColor: "#f3f3f3", padding: 15, borderWidth: 1, borderColor: "#dddddd" }} onPress={() => { setIsCreateAccount(!isCreateAccount) }}>
                             <View style={{ flexDirection: "row", alignItems: "center", }}>
                                 <FontAwesome name="circle-o" size={24} color="gray" />
                                 <Text style={{ marginLeft: 10 }}>Create account New to Amazon?</Text>
@@ -131,9 +182,15 @@ const SignUp = () => {
                                 </View>
                             </TouchableOpacity>
 
-                            <AccountInfoBox title="Email or phone number"  state={emailSignIn}  setState={setEmailSignIn}/>
-                            <AccountInfoBox title="Amazon password" state={passwordSignIn}  setState={setpasswordSignIn}/>
-
+                            <AccountInfoBox title="Email or phone number" state={emailSignIn} setState={setEmailSignIn} />
+                            <AccountInfoBox title="Amazon password" state={passwordSignIn} setState={setpasswordSignIn} isShowPassword={isShowPassword} />
+                            
+                            {/* {isShowPassword && (
+                                <View style={{ marginBottom: 10 }}>
+                                    <Text>Password: {passwordSignIn}</Text>  
+                                </View>
+                            )} */}
+                            
                             <TouchableOpacity style={{ marginBottom: 10 }} onPress={() => { setIsShowPassword(!isShowPassword) }}>
 
                                 <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -159,7 +216,7 @@ const SignUp = () => {
                             </TouchableOpacity>
 
 
-                            <TouchableOpacity  onPress={()=>handleContinue()} style={{ backgroundColor: "#ffd815", height: 50, justifyContent: "center", alignItems: "center", borderRadius: 10, marginBottom: 30 }}>
+                            <TouchableOpacity onPress={() => handleContinue()} style={{ backgroundColor: "#ffd815", height: 50, justifyContent: "center", alignItems: "center", borderRadius: 10, marginBottom: 30 }}>
                                 <Text>Continue</Text>
                             </TouchableOpacity>
 

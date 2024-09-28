@@ -11,6 +11,11 @@ const styles = StyleSheet.create({
         borderColor: "#949494", borderWidth: 1,
         height: 50,  padding: 5,
         
+    },
+    box2: {
+        borderColor: "#949494", borderWidth: 1,
+        height: 50,  padding: 5,borderBottomWidth:0
+        
     }
 })
 

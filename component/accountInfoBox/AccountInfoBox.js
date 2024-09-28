@@ -2,16 +2,28 @@
 import { View, Text, TextInput } from "react-native"
 import styles from "./Style"
 
-const AccountInfoBox = ({ title,state,setState }) => {
+const AccountInfoBox = ({ title, state, setState, isShowPassword = true }) => {
     return (
         <View style={styles.container}  >
             <Text style={styles.title}>{title}</Text>
-            <TextInput
-                style={styles.box}
-                value={state}
-                onChangeText={(value)=>setState(value)}
-                
-            />
+
+
+            <View>
+                <TextInput
+                    style={  styles.box }
+                    value={state}
+                    onChangeText={(value) => setState(value)}
+                    secureTextEntry={!isShowPassword}
+
+
+                />
+ 
+
+
+            </View>
+
+
+
         </View>
     )
 }

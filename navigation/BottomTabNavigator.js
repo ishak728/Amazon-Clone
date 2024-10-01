@@ -5,8 +5,7 @@ import Profile from '../screens/profile/Profile';
 import Cart from '../screens/cart/Cart';
 import Menu from '../screens/menu/Menu';
 import { Ionicons } from '@expo/vector-icons';
-import { View, Text } from 'react-native';
-import { SearchBar } from 'react-native-screens';
+ 
 //#008E97 amazon tab color
 
 const Tab = createBottomTabNavigator();

@@ -3,6 +3,7 @@ import { ScrollView, TouchableOpacity, TouchableWithoutFeedback } from "react-na
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import DealsBox from "../../component/dealsBox/DealsBox";
 import styles from "./Style";
+import Line from "../../component/line/Line";
 
 const Home = () => {
     const { width } = Dimensions.get('window');
@@ -29,7 +30,10 @@ const Home = () => {
             ],
             color: "Stellar Green",
             size: "6 GB RAM 128GB Storage",
-            off:"%13"
+            off:"%13",
+            ratingValue:4.5,
+            ratingCount:234
+
         },
         {
             id: "30",
@@ -47,7 +51,9 @@ const Home = () => {
             ],
             color: "Cloud Navy",
             size: "8 GB RAM 128GB Storage",
-            off:"%21"
+            off:"%21",
+            ratingValue:4.3,
+            ratingCount:200
         },
         {
             id: "40",
@@ -64,7 +70,9 @@ const Home = () => {
             ],
             color: "Icy Silver",
             size: "6 GB RAM 64GB Storage",
-            off:"%15"
+            off:"%15",
+            ratingValue:4.1,
+            ratingCount:331
         },
         {
             id: "50",
@@ -79,7 +87,9 @@ const Home = () => {
                 "https://m.media-amazon.com/images/I/61og60CnGlL._SX679_.jpg",
                 "https://m.media-amazon.com/images/I/61twx1OjYdL._SX679_.jpg",
             ],
-            off:"%12"
+            off:"%12",
+            ratingValue:2.99,
+            ratingCount:589
         },
     ];
     const offers = [
@@ -100,7 +110,9 @@ const Home = () => {
           ],
           color: "Green",
           size: "Normal",
-          off:"%34"
+          off:"%34",
+          ratingValue:3.3,
+          ratingCount:123
         },
         {
           id: "1",
@@ -117,7 +129,9 @@ const Home = () => {
           ],
           color: "black",
           size: "Normal",
-          off:"%12"
+          off:"%12",
+          ratingValue:4.4,
+          ratingCount:564
         },
         {
           id: "2",
@@ -129,7 +143,9 @@ const Home = () => {
           carouselImages: ["https://m.media-amazon.com/images/I/41t7Wa+kxPL.jpg"],
           color: "black",
           size: "Normal",
-          off:"%19"
+          off:"%19",
+          ratingValue:3.3,
+          ratingCount:443
         },
         {
           id: "3",
@@ -146,7 +162,9 @@ const Home = () => {
           ],
           color: "Norway Blue",
           size: "8GB RAM, 128GB Storage",
-          off:"%25"
+          off:"%25",
+          ratingValue:4.2,
+          ratingCount:423
         },
       ];
     const handlePress = () => {
@@ -183,7 +201,7 @@ const Home = () => {
                 )) 
             }
             </View>
-            <View style={{height:3,backgroundColor: '#e3e6e6',}}/>
+            <Line/>
 
 
             <Text style={{fontSize:20,fontWeight:"bold",margin:10}}>Related to items you've saved</Text>
@@ -194,7 +212,7 @@ const Home = () => {
                 ))
             }
             </View>
-            <View style={{height:3,backgroundColor: '#e3e6e6',}}/>
+            <Line/>
         </ScrollView>
     );
 };

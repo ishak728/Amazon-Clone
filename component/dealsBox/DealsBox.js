@@ -4,8 +4,9 @@ import { Pressable, View, Image, Alert, Text } from "react-native"
 
 const DealsBox = ({ item, isFromDeals = true }) => {
     const navigation=useNavigation()
+    
     const handle = () => {
-        navigation.navigate("Detail")
+        navigation.navigate("Detail",{item})
     }
 
     return (

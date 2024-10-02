@@ -89,7 +89,8 @@ const Home = () => {
             ],
             off:"%12",
             ratingValue:2.99,
-            ratingCount:589
+            ratingCount:589,
+            size: "6 GB RAM 128GB Storage",
         },
     ];
     const offers = [

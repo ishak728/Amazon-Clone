@@ -1,5 +1,5 @@
 import { useRoute } from "@react-navigation/native"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Text, Image, Dimensions, Pressable, Alert, Modal, StyleSheet } from "react-native"
 import { ScrollView, TouchableWithoutFeedback } from "react-native-gesture-handler"
 import { Rating } from 'react-native-ratings';
@@ -11,6 +11,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import QuantitySelector from "../../component/quantitySelector/QuantitySelector";
 import DealsBox from "../../component/dealsBox/DealsBox";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../redux/slices/CartSlice";
 //i will change circle of the SwiperFlatlist
 
 const Detail = () => {
@@ -20,6 +22,14 @@ const Detail = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedQuantity, setSelectedQuantity] = useState(1)
     const { width } = Dimensions.get("window")
+
+    const cart=useSelector((state)=>state.cart.cart)
+    const dispatch=useDispatch()
+    
+    useEffect(()=>{
+
+        console.log("asdcart...",cart)
+    },[cart])
 
 
     const offers = [
@@ -97,7 +107,8 @@ const Detail = () => {
             ],
             off: "%12",
             ratingValue: 2.99,
-            ratingCount: 589
+            ratingCount: 589,
+            size: "6 GB RAM 64GB Storage",
         },
         {
             id: "0",
@@ -207,6 +218,14 @@ const Detail = () => {
     const explainPrimeMember = () => {
         // TODO:i will show this with bottomSheet later
         Alert.alert("This is determined using the 90-day median price paid by customers for the product on Amazon. We exclude prices paid by customers for the product during a limited time deal.")
+    }
+
+    const add = () => {
+        dispatch(addToCart(item))
+       
+    }
+    const buyNow = () => {
+        Alert.alert("saved")
     }
 
     const saveToFavorites = () => {
@@ -365,7 +384,7 @@ const Detail = () => {
             <QuantitySelector selectedQuantity={selectedQuantity} setSelectedQuantity={setSelectedQuantity} />
 
             <View style={{ backgroundColor: "#ffd815", padding: 10, borderRadius: 30, flexDirection: "row", paddingVertical: 20, justifyContent: "center", alignItems: "center", marginVertical: 15 }} >
-                <Pressable onPress={() => { }}>
+                <Pressable onPress={() => {add() }}>
                     <Text>Add to Cart</Text>
 
                 </Pressable>
@@ -373,7 +392,7 @@ const Detail = () => {
             </View>
 
             <View style={{ backgroundColor: "#ffa31b", padding: 10, borderRadius: 30, flexDirection: "row", paddingVertical: 20, justifyContent: "center", alignItems: "center" }} >
-                <Pressable onPress={() => { }}>
+                <Pressable onPress={() => { buyNow() }}>
                     <Text>Buy Now</Text>
 
                 </Pressable>
@@ -397,47 +416,4 @@ const Detail = () => {
     )
 }
 export default Detail
-const styles = StyleSheet.create({
-    centeredView: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 22,
-
-    },
-    modalView: {
-        margin: 20,
-        backgroundColor: 'white',
-        borderRadius: 20,
-        padding: 35,
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5,
-    },
-    button: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2,
-    },
-    buttonOpen: {
-        backgroundColor: '#F194FF',
-    },
-    buttonClose: {
-        backgroundColor: '#2196F3',
-    },
-    textStyle: {
-        color: 'white',
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-    modalText: {
-        marginBottom: 15,
-        textAlign: 'center',
-    },
-});
+ 

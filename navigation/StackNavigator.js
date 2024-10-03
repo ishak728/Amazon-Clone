@@ -14,7 +14,7 @@ const Stack = createStackNavigator()
 
 const MyStack = () => {
     return (
-        <Stack.Navigator initialRouteName='MyTab'>
+        <Stack.Navigator initialRouteName='SignUp'>
             <Stack.Screen name='SignIn' component={SignIn} options={{
                 header: () => (<AccountHeader />),
             }}>
@@ -30,10 +30,10 @@ const MyStack = () => {
             }}>
             </Stack.Screen>
 
-            <Stack.Screen name='Detail' component={Detail} options={{
+            {/* <Stack.Screen name='Detail' component={Detail} options={{
                 header: () => (<SearchBar/>),
             }}>
-            </Stack.Screen>
+            </Stack.Screen> */}
 
             <Stack.Screen name='VerifyEmail' component={VerifyEmail} options={{
                 header: () => (<AccountHeader headerTitle='' />),

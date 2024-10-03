@@ -9,9 +9,11 @@ const Home = () => {
     const { width } = Dimensions.get('window');
 
     const images = [
-        "https://img.etimg.com/thumb/msid-93051525,width-1070,height-580,imgsize-2243475,overlay-economictimes/photo.jpg",
-        "https://images-eu.ssl-images-amazon.com/images/G/31/img22/Wireless/devjyoti/PD23/Launches/Updated_ingress1242x550_3.gif",
-        "https://images-eu.ssl-images-amazon.com/images/G/31/img23/Books/BB/JULY/1242x550_Header-BB-Jul23.jpg",
+        "https://assets.aboutamazon.com/cd/6f/7e46d14a42989d7e41b5795d5c09/aa-aug2024-pbdd-month-announcement-standard-hero-v6-2000x1125.jpg",
+        "https://www.travelandleisure.com/thmb/HPMzKb9bZtxk8p3sXRW2IQTdjbs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/amazon-october-prime-day-announcement-tout-tl-52fc5980347641eb896abee8ac99a427.jpg",
+        "https://pbs.twimg.com/media/F7D09l2WcAAfI2X?format=png&name=900x900",
+        "https://cdn.arstechnica.net/wp-content/uploads/2023/10/Ars-Technica-Prime-Day-Header-Main-2-Pink-800x450.png",
+        
     ];
 
     const deals = [
@@ -187,7 +189,8 @@ const Home = () => {
                             <Image
                                 source={{ uri: item }}
                                 style={{ width: width, height: 300 }}
-                                resizeMode="cover"
+                                resizeMode="stretch
+                                "
                             />
                         </TouchableWithoutFeedback>
                     )}

@@ -107,6 +107,7 @@ console.log( "//",email,password)
   try {
     const user = await User.findOne({ email })
     if (!user) {
+      console.log("user is not existes")
       return res.status(404).json({ message: "user is not existes" })
     }
 
@@ -121,7 +122,7 @@ console.log( "//",email,password)
     //const secretKey = crypto.randomBytes(32).toString("hex")
 
 
-    const token = jwt.sign({ userId: user._id, }, process.env.JWT_SECRET, { expiresIn: '2w' })
+    const token = jwt.sign({ userId: user._id, }, process.env.JWT_SECRET, { expiresIn: '1w' })
 
     res.status(200).json({token})
 
@@ -151,7 +152,7 @@ const verifyToken=async(req,res)=>{
     })
     
   } catch (error) {
-    console.log("1")
+    console.log("1")  
     res.status(500).json(error)
   }
 }

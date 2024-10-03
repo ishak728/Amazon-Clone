@@ -5,6 +5,10 @@ import Profile from '../screens/profile/Profile';
 import Cart from '../screens/cart/Cart';
 import Menu from '../screens/menu/Menu';
 import { Ionicons } from '@expo/vector-icons';
+import Main from '../screens/main/Main';
+import Fontisto from '@expo/vector-icons/Fontisto';
+import { useSelector } from 'react-redux';
+import { View ,Text} from 'react-native';
  
 //#008E97 amazon tab color
 
@@ -12,6 +16,7 @@ const Tab = createBottomTabNavigator();
 
 
 const MyTab = () => {
+    const cart=useSelector((state)=>state.cart.cart)
     return (
         <Tab.Navigator
             screenOptions={{
@@ -20,7 +25,7 @@ const MyTab = () => {
                     position: 'absolute',
                 },
             }}>
-            <Tab.Screen name='Home' component={Home}
+            <Tab.Screen name='Main' component={Main}
                 options={{
                     tabBarLabel: "",
                     headerShown:false,
@@ -66,11 +71,17 @@ const MyTab = () => {
                 options={{
                     tabBarLabel: "",
                     headerShown: false,
-                    tabBarIcon: ({ focused }) =>
+                    tabBarIcon: ({ focused }) =>//#008E97
                         focused ? (
-                            <Ionicons name="cart-outline" size={24} color="#008E97" />
+                            <View style={{ alignItems:"center",justifyContent:"center"}}>
+                            <Text style={{position:"absolute",fontSize:13,color:"#008E97",fontWeight:"bold"}}>{cart.length}</Text>
+                             <Ionicons name="cart-outline" size={40} color="#008E97" />
+                           </View>
                         ) : (
-                            <Ionicons name="cart-outline" size={24} color="black" />
+                           <View style={{ alignItems:"center",justifyContent:"center"}}>
+                            <Text style={{position:"absolute",fontSize:13,color:"black",fontWeight:"bold"}}>{cart.length}</Text>
+                             <Ionicons name="cart-outline" size={40} color="black" />
+                           </View>
                         ),
                 }}
 

@@ -22,25 +22,27 @@ const SignUp = () => {
     const [passwordSignIn, setpasswordSignIn] = useState(null)
 
 
-    useEffect(()=>{
-        if(!isCreateAccount){
+    useEffect(() => {
+     
             verify()
-        }
+    
 
-    },[isCreateAccount])
+    }, [ ])
 
     const verify = async () => {
         const token = await AsyncStorage.getItem("token", token)
 
         try {
-            const data = await verifyToken(token)
-            console.log("data", data)
-            if (data) {
-                Alert.alert(   "successful...")
+            if (token) {
+                const data = await verifyToken(token)
+                console.log("data", data)
+                if (data) {
+                    navigation.navigate("MyTab") 
+                }
             }
         } catch (error) {
             console.log(error.response.status)
-            
+
         }
     }
 
@@ -55,10 +57,12 @@ const SignUp = () => {
                 try {
                     const data = await createUser(fullName, email, password)
                     console.log("data", data.email, data.password, data.fullName, "id::::", data._id)
+                    setIsCreateAccount(true)
                     Alert.alert("Thanks")
                 } catch (error) {
                     console.log("!!!", error)
                 }
+
 
                 //navigation.navigate("VerifyEmail")
             }
@@ -71,12 +75,11 @@ const SignUp = () => {
 
             if (emailSignIn && passwordSignIn.length >= 8) {
                 try {
-                    const data = await signIn(fullName, email, password)
-                    console.log(data.token)
-                    Alert.alert("Thanks ")
+                    const data = await signIn( emailSignIn, passwordSignIn)
                     AsyncStorage.setItem("token", data.token)
+                    verify()
 
-                      
+
                     //navigate to home screen
                 } catch (error) {
                     console.log("!!!", error)
@@ -184,13 +187,13 @@ const SignUp = () => {
 
                             <AccountInfoBox title="Email or phone number" state={emailSignIn} setState={setEmailSignIn} />
                             <AccountInfoBox title="Amazon password" state={passwordSignIn} setState={setpasswordSignIn} isShowPassword={isShowPassword} />
-                            
+
                             {/* {isShowPassword && (
                                 <View style={{ marginBottom: 10 }}>
                                     <Text>Password: {passwordSignIn}</Text>  
                                 </View>
                             )} */}
-                            
+
                             <TouchableOpacity style={{ marginBottom: 10 }} onPress={() => { setIsShowPassword(!isShowPassword) }}>
 
                                 <View style={{ flexDirection: "row", alignItems: "center" }}>

@@ -17,10 +17,10 @@ export const createUser=async(fullName,email,password)=>{
 }
 
 
-export const signIn=async(fullName,email,password)=>{
+export const signIn=async( email,password)=>{
     try {
         const response=await axios.post('http://192.168.1.144:3000/user/signin',{
-            fullName,email,password
+             email,password
         })
          
         return response.data

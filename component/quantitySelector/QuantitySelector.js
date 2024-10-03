@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Modal, Text, Pressable, View, Dimensions } from 'react-native';
+import { Alert, Modal, Text, Pressable, View, Dimensions, TouchableOpacity } from 'react-native';
 import Line from '../line/Line';
 import { ScrollView } from 'react-native-gesture-handler';
 import styles from "./Style"
@@ -20,13 +20,13 @@ const QuantitySelector = ({ selectedQuantity, setSelectedQuantity }) => {
 
     return (
         <View style={{}}>
-            <View style={{ backgroundColor: "#f1f2f2", padding: 10, borderRadius: 10, flexDirection: "row",  justifyContent: "space-between", alignItems: "center",paddingVertical:20 }} >
-                <Pressable onPress={() => setModalVisible(true)}>
+            <TouchableOpacity onPress={() => setModalVisible(true)}>
+                <View style={{ backgroundColor: "#f1f2f2", padding: 10, borderRadius: 10, flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingVertical: 20 }} >
                     <Text>Quantity: {selectedQuantity}</Text>
+                    <Ionicons name="chevron-down" size={15} color="black" />
+                </View>
+            </TouchableOpacity>
 
-                </Pressable>
-                <Ionicons name="chevron-down" size={15} color="black" />
-            </View>
             <Modal
                 animationType='none'
                 visible={modalVisible}

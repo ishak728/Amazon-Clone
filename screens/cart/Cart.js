@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { View, Text, Alert, Pressable } from "react-native"
+import { View, Text, Alert, Pressable, TouchableOpacity } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Line from "../../component/line/Line";
@@ -20,7 +20,7 @@ const Cart = () => {
     //  },[cart[0].quantity])
 
     return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: "#ffffff", padding: 10, paddingBottom: 50 }}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: "#ffffff", padding: 10, paddingBottom: 100 }}>
            
 
                 <Text style={{ fontSize: 20 }}>Subtotal{" "}
@@ -35,11 +35,11 @@ const Cart = () => {
                             Choose this option at checkout.{" "}
 
                         </Text>
-                        <Pressable onPress={() => { }}>
+                        <TouchableOpacity onPress={() => { }}>
                             <Text style={{ color: "#007185" }}>
                                 See details
                             </Text>
-                        </Pressable>
+                        </TouchableOpacity>
                     </Text>
 
 

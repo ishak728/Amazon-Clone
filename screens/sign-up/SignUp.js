@@ -35,7 +35,7 @@ const SignUp = () => {
         try {
             if (token) {
                 const data = await verifyToken(token)
-                console.log("data", data)
+             
                 if (data) {
                     navigation.navigate("MyTab") 
                 }
@@ -56,7 +56,7 @@ const SignUp = () => {
             if (fullName && email && password.length >= 8) {
                 try {
                     const data = await createUser(fullName, email, password)
-                    console.log("data", data.email, data.password, data.fullName, "id::::", data._id)
+                   
                     setIsCreateAccount(true)
                     Alert.alert("Thanks")
                 } catch (error) {

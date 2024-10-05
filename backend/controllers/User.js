@@ -14,7 +14,7 @@ const sendVerificationEmail = (email, verificationToken) => {
     service: 'Gmail',
     auth: {
       user: 'ishk23ishk@gmail.com',
-      pass: process.env.GMAIL_PASSWORD, 
+      pass: process.env.GMAIL_PASSWORD,
     },
   });
 
@@ -99,22 +99,22 @@ const verifyEmail = async (req, res) => {
 //sign in
 const signIn = async (req, res) => {
   const { email, password } = req.body
-  
 
-console.log( "//",email,password)
-  
+
+  console.log("//", email, password)
+
 
   try {
     const user = await User.findOne({ email })
     if (!user) {
       console.log("user is not existes")
-      return res.status(404).json({ message: "user is not existes" })
+      return res.status(404).json({ message: "User does not exist" })
     }
 
     if (password !== user.password) {
       return res.status(401).json({ message: "invalid password" })
     }
-    if(!user.verified){
+    if (!user.verified) {
       return res.status(401).json({ message: "Email not verified" })
     }
 
@@ -124,7 +124,7 @@ console.log( "//",email,password)
 
     const token = jwt.sign({ userId: user._id, }, process.env.JWT_SECRET, { expiresIn: '1w' })
 
-    res.status(200).json({token})
+    res.status(200).json({ token })
 
   } catch (error) {
     console.log("error")
@@ -134,32 +134,76 @@ console.log( "//",email,password)
 
 
 //verifytoken.if token is valid then user sign in automatically
-const verifyToken=async(req,res)=>{
- 
+const verifyToken = async (req, res) => {
 
-  const token=req.params.token
+
+  const token = req.params.token
 
   try {
-  
 
-    jwt.verify(token,process.env.JWT_SECRET,(error,decoded)=>{
-      if(error){
+
+    jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
+      if (error) {
         //if token expires this part will run
         console.log("2")
-        return res.status(401).json({message:error})
+        return res.status(401).json({ message: error })
       }
-      res.status(200).json({message:"Verification is successful",decoded})
+      res.status(200).json({ message: "Verification is successful", decoded })
     })
-    
+
   } catch (error) {
-    console.log("1")  
+    console.log("1")
     res.status(500).json(error)
   }
 }
- 
+
+const addAdress = async (req, res) => {
+
+  const { userId, address } = req.body
+  try {
+
+    const user = await User.findById(userId)
+    if (!user) {
+      return res.status(404).json({ message: "User does not exist" })
+    }
+
+    user.addresses.push(address)
+
+    await user.save()
+
+    res.status(200).json({ message: "address added" })
 
 
-module.exports = { createUser, verifyEmail, signIn,verifyToken }
+
+  } catch (error) {
+    res.status(500).json({ message: error })
+  }
+}
+
+
+
+const getAddresses=async(req,res)=>{
+  const {id}=req.params
+
+  try {
+    const user=await User.findById(id)
+    if(!user){
+      return res.status(404).json({ message: "User does not exist" })
+    }
+
+
+    const addresses=user.addresses
+
+    res.status(201).json(addresses)
+
+  } catch (error) {
+    res.status(500).json({message:error})
+  } 
+}
+
+
+
+module.exports = { createUser, verifyEmail, signIn, verifyToken,addAdress,getAddresses }
 
 
 

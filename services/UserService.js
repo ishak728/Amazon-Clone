@@ -26,7 +26,7 @@ export const signIn=async( email,password)=>{
         return response.data
         
     } catch (error) {
-        console.log("?",error)
+        console.log(error)
         throw error
     }
 }
@@ -42,4 +42,32 @@ export const verifyToken=async(token)=>{
         throw error
     }
 
+}
+
+export const addAddress=async(userId,address)=>{
+    try {
+        const response=await axios.post("http://192.168.1.144:3000/user/add-address",{
+            userId,
+            address
+
+        })
+       
+        return response.data
+        
+    } catch (error) {
+        throw error
+    }
+}
+
+export const getAddress=async(userId)=>{
+   
+    try {
+        const response=await axios.get(`http://192.168.1.144:3000/user/get-addresses/${userId}`)
+
+        
+        return response.data
+        
+    } catch (error) {
+        throw error
+    }
 }

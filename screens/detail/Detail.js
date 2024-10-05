@@ -260,7 +260,7 @@ const Detail = () => {
 
 
 
-            <QuantitySelector selectedQuantity={selectedQuantity} setSelectedQuantity={setSelectedQuantity} />
+            <QuantitySelector state={selectedQuantity} setState={setSelectedQuantity} />
 
             <TouchableOpacity
                 onPress={() => { add() }}>

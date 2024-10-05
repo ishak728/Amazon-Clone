@@ -21,19 +21,19 @@ const UserSchema = mongoose.Schema({
     verificationToken: String,
     addresses: [
         {
-            name: String,
-            mobileNo: String,
-            houseNo: String,
-            street: String,
-            landmark: String,
-            city: String,
             country: String,
+            fullName: String,
+            phone: String,
+            street: String,
+            building: String,
+            city: String,
+            state:String,
             postalCode: String,
         }
     ],
     orders: [
         {
-            type: mongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId, 
             ref: "Order"
         }
     ],

@@ -74,12 +74,12 @@ const MyTab = () => {
                     tabBarIcon: ({ focused }) =>//#008E97
                         focused ? (
                             <View style={{ alignItems:"center",justifyContent:"center"}}>
-                            <Text style={{position:"absolute",fontSize:13,color:"#008E97",fontWeight:"bold"}}>{cart.length}</Text>
+                            <Text style={{position:"absolute",fontSize:13,color:"#008E97",fontWeight:"bold"}}>{cart?.length}</Text>
                              <Ionicons name="cart-outline" size={40} color="#008E97" />
                            </View>
                         ) : (
                            <View style={{ alignItems:"center",justifyContent:"center"}}>
-                            <Text style={{position:"absolute",fontSize:13,color:"black",fontWeight:"bold"}}>{cart.length}</Text>
+                            <Text style={{position:"absolute",fontSize:13,color:"black",fontWeight:"bold"}}>{cart?.length}</Text>
                              <Ionicons name="cart-outline" size={40} color="black" />
                            </View>
                         ),

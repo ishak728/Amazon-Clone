@@ -1,17 +1,32 @@
 import { View, Text, Dimensions } from "react-native"
 import Line from "../line/Line"
 import CartItemBoxButton from "../cartItemBoxButton/CartItemBoxButton"
- 
+import { AddressContext } from "../../contextApi/AddressContext"
+import React, { useContext, useEffect } from 'react';
+
 
 
 const AddressBox = ({ item }) => {
     const { width } = Dimensions.get("window")
+    const { address, setAddress } = useContext(AddressContext)
 
-    const edit=()=>{
-console.log("adsf")
+ 
+
+
+
+
+    const edit = () => {
+        console.log("adsf")
     }
-    const remove=()=>{
-        
+
+    const remove = () => {
+
+    }
+
+    const setAsDefault = (item) => {
+        console.log("setDefaultFunc",item)
+        setAddress(item)
+
     }
 
     return (
@@ -28,15 +43,23 @@ console.log("adsf")
                 <Text>{item.building}{item.postalCode}</Text>
                 <Text>{item.country}</Text>
                 <Text >Phone number: +{item.phone}</Text>
-                
 
-                <View style={{flexDirection:"row",width:width*0.5}}>
-                    <View style={{flex:1}}>
+
+                <View style={{ flexDirection: "row", }}>
+                    <View style={{ flex: 2 }}>
                         <CartItemBoxButton name={"Edit"} handle={edit} />
                     </View>
-                    <View style={{flex:1}}>
-                        <CartItemBoxButton name={"Remove"} handle={remove}/>
+                    <View style={{ flex: 2.3 }}>
+                        <CartItemBoxButton name={"Remove"} handle={remove} />
                     </View>
+
+                    {
+                        address._id !== item._id && (
+                            <View style={{ flex: 3 }}>
+                                <CartItemBoxButton name={"Set as Default"} handle={() => setAsDefault(item)} />
+                            </View>
+                        )
+                    }
 
                 </View>
 

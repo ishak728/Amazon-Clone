@@ -1,4 +1,5 @@
 import axios from 'axios';
+import BASE_URL from "../constants/Constants"
 
 
 
@@ -19,7 +20,7 @@ export const createUser=async(fullName,email,password)=>{
 
 export const signIn=async( email,password)=>{
     try {
-        const response=await axios.post('http://192.168.1.144:3000/user/signin',{
+        const response=await axios.post(`${BASE_URL}/user/signin`,{
              email,password
         })
          
@@ -27,14 +28,14 @@ export const signIn=async( email,password)=>{
         
     } catch (error) {
         console.log(error)
-        throw error
+        throw error 
     }
 }
 
 
 export const verifyToken=async(token)=>{
     try {
-        const response=await axios.get(`http://192.168.1.144:3000/user/verify-token/${token}`)
+        const response=await axios.get(`${BASE_URL}/user/verify-token/${token}`)
         return response.data
     } catch (error) {
         
@@ -46,7 +47,7 @@ export const verifyToken=async(token)=>{
 
 export const addAddress=async(userId,address)=>{
     try {
-        const response=await axios.post("http://192.168.1.144:3000/user/add-address",{
+        const response=await axios.post(`${BASE_URL}/user/add-address`,{
             userId,
             address
 
@@ -62,7 +63,7 @@ export const addAddress=async(userId,address)=>{
 export const getAddress=async(userId)=>{
    
     try {
-        const response=await axios.get(`http://192.168.1.144:3000/user/get-addresses/${userId}`)
+        const response=await axios.get(`${BASE_URL}/user/get-addresses/${userId}`)
 
         
         return response.data

@@ -21,7 +21,7 @@ const Addresses = () => {
         const userId = await getUserId()
         const addresses = await getAddress(userId) 
         setAddresses(addresses)
-        console.log(addresses)
+       
     }
 
     useEffect(()=>{

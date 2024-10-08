@@ -5,17 +5,20 @@ import DealsBox from "../../component/dealsBox/DealsBox";
 import styles from "./Style";
 import Line from "../../component/line/Line";
 import Modal from 'react-native-modal';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Fontisto from '@expo/vector-icons/Fontisto';
 import Entypo from '@expo/vector-icons/Entypo';
 import BottomAdressBox from "../../component/bottomAdressBox/BottomAdressBox";
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
+import { getUserId } from "../../utils/AsyncStorage";
+import { getAddress } from "../../services/UserService";
+
 
 const Home = () => {
     const [isModalVisible, setModalVisible] = useState(true);
     const { width } = Dimensions.get('window');
-    const navigation=useNavigation()
+    const navigation = useNavigation()
 
     const images = [
         "https://assets.aboutamazon.com/cd/6f/7e46d14a42989d7e41b5795d5c09/aa-aug2024-pbdd-month-announcement-standard-hero-v6-2000x1125.jpg",
@@ -218,6 +221,31 @@ const Home = () => {
     ];
 
 
+    const [addresses, setAddresses] = useState([])
+    const [loading, setLoading] = useState(true)
+
+
+
+    const get = async () => {
+
+        const userId = await getUserId()
+        const addresses = await getAddress(userId)
+        setAddresses(addresses)
+
+    }
+
+    useEffect(() => {
+        get()
+    }, [])
+
+    useEffect(() => {
+
+        if (addresses) {
+            setLoading(false)
+        }
+    }, [addresses])
+
+
     const handlePress = () => {
         Alert.alert("Pressed");
     };
@@ -251,12 +279,9 @@ const Home = () => {
 
             </ScrollView>
 
-
-
-
             <View >
                 <SwiperFlatList
-                    autoplay
+                    // autoplay  
                     autoplayDelay={4}
                     autoplayLoop
                     index={2}
@@ -310,10 +335,16 @@ const Home = () => {
 
 
                     <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ marginBottom: 10 }}>
-                        <BottomAdressBox />
 
-                        <TouchableOpacity onPress={() => {navigation.navigate("Addresses"); setModalVisible(!isModalVisible) }}
-                         style={{ borderWidth: 2, borderColor: "#a2a6ab", justifyContent: "center", alignItems: "center", padding: 5, width: 140, height: 140 }}>
+                        {addresses.map((item) => {
+                            return (
+                                <BottomAdressBox key={item._id} item={item} />
+                            )
+                        })}
+
+
+                        <TouchableOpacity onPress={() => { navigation.navigate("Addresses"); setModalVisible(!isModalVisible) }}
+                            style={{ borderWidth: 2, borderColor: "#a2a6ab", justifyContent: "center", alignItems: "center", padding: 5, width: 140, height: 140 }}>
 
                             <Text style={{ fontSize: 16, fontWeight: "bold", color: '#1b74c6' }}>Manage adress book</Text>
 

@@ -7,9 +7,15 @@ import { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { createUser, signIn, verifyToken } from "../../services/UserService"
+ 
+ 
 
 
 const SignUp = () => {
+
+ 
+
+
     const navigation = useNavigation()
 
     const [isCreateAccount, setIsCreateAccount] = useState(true)

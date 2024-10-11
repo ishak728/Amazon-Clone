@@ -8,15 +8,16 @@ import { Ionicons } from '@expo/vector-icons';
 import Main from '../screens/main/Main';
 import Fontisto from '@expo/vector-icons/Fontisto';
 import { useSelector } from 'react-redux';
-import { View ,Text} from 'react-native';
- 
+import { View, Text } from 'react-native';
+import ProfileStack from './ProfileStackNavigator';
+
 //#008E97 amazon tab color
 
 const Tab = createBottomTabNavigator();
 
 
 const MyTab = () => {
-    const cart=useSelector((state)=>state.cart.cart)
+    const cart = useSelector((state) => state.cart.cart)
     return (
         <Tab.Navigator
             screenOptions={{
@@ -25,10 +26,25 @@ const MyTab = () => {
                     position: 'absolute',
                 },
             }}>
+            <Tab.Screen name='ProfileStack' component={ProfileStack}
+                options={{
+                    tabBarLabel: "",
+                    headerShown: false,
+                    tabBarIcon: ({ focused }) =>
+                        focused ? (
+                            <Ionicons name="person-outline" size={24} color="#008E97" />
+                        ) : (
+                            <Ionicons name="person-outline" size={24} color="black" />
+                        ),
+
+
+                }}
+
+            />
             <Tab.Screen name='Main' component={Main}
                 options={{
                     tabBarLabel: "",
-                    headerShown:false,
+                    headerShown: false,
                     tabBarIcon: ({ focused }) =>
                         focused ? (
                             <Ionicons name="home-outline" size={24} color="#008E97" />
@@ -52,36 +68,22 @@ const MyTab = () => {
                 }}
 
             />
-            <Tab.Screen name='Profile' component={Profile}
-                options={{
-                    tabBarLabel: "",
-                    headerShown: false,
-                    tabBarIcon: ({ focused }) =>
-                        focused ? (
-                            <Ionicons name="person-outline" size={24} color="#008E97" />
-                        ) : (
-                            <Ionicons name="person-outline" size={24} color="black" />
-                        ),
 
-
-                }}
-
-            />
             <Tab.Screen name='Cart' component={Cart}
                 options={{
                     tabBarLabel: "",
                     headerShown: false,
                     tabBarIcon: ({ focused }) =>//#008E97
                         focused ? (
-                            <View style={{ alignItems:"center",justifyContent:"center"}}>
-                            <Text style={{position:"absolute",fontSize:13,color:"#008E97",fontWeight:"bold"}}>{cart?.length}</Text>
-                             <Ionicons name="cart-outline" size={40} color="#008E97" />
-                           </View>
+                            <View style={{ alignItems: "center", justifyContent: "center" }}>
+                                <Text style={{ position: "absolute", fontSize: 13, color: "#008E97", fontWeight: "bold" }}>{cart?.length}</Text>
+                                <Ionicons name="cart-outline" size={40} color="#008E97" />
+                            </View>
                         ) : (
-                           <View style={{ alignItems:"center",justifyContent:"center"}}>
-                            <Text style={{position:"absolute",fontSize:13,color:"black",fontWeight:"bold"}}>{cart?.length}</Text>
-                             <Ionicons name="cart-outline" size={40} color="black" />
-                           </View>
+                            <View style={{ alignItems: "center", justifyContent: "center" }}>
+                                <Text style={{ position: "absolute", fontSize: 13, color: "black", fontWeight: "bold" }}>{cart?.length}</Text>
+                                <Ionicons name="cart-outline" size={40} color="black" />
+                            </View>
                         ),
                 }}
 

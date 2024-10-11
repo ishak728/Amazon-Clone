@@ -5,7 +5,7 @@ import DealsBox from "../../component/dealsBox/DealsBox";
 import styles from "./Style";
 import Line from "../../component/line/Line";
 import Modal from 'react-native-modal';
-import { useState, useEffect } from "react";
+import { useState, useEffect ,useContext} from "react";
 import Fontisto from '@expo/vector-icons/Fontisto';
 import Entypo from '@expo/vector-icons/Entypo';
 import BottomAdressBox from "../../component/bottomAdressBox/BottomAdressBox";
@@ -13,12 +13,14 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { getUserId } from "../../utils/AsyncStorage";
 import { getAddress } from "../../services/UserService";
+import { AddressContext } from "../../contextApi/AddressContext";
 
 
 const Home = () => {
-    const [isModalVisible, setModalVisible] = useState(true);
+    const [isModalVisible, setModalVisible] = useState(false);
     const { width } = Dimensions.get('window');
     const navigation = useNavigation()
+     const {address, setAddress}=useContext(AddressContext)
 
     const images = [
         "https://assets.aboutamazon.com/cd/6f/7e46d14a42989d7e41b5795d5c09/aa-aug2024-pbdd-month-announcement-standard-hero-v6-2000x1125.jpg",
@@ -257,7 +259,7 @@ const Home = () => {
 
                 <TouchableOpacity onPress={() => { setModalVisible(!isModalVisible) }} style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
                     <Ionicons style={{ marginHorizontal: 4, }} name="location-outline" size={24} color="black" />
-                    <Text style={{ fontWeight: "bold" }}>11102</Text>
+                    <Text style={{ fontWeight: "bold" }}>{address.postalCode}</Text>
                     <Ionicons name="chevron-down" size={15} color="black" />
 
                 </TouchableOpacity>

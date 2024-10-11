@@ -16,9 +16,7 @@ export const AddressProvider = ({ children }) => {
 		"_id": "67005cbc7fb14afe2f77427e"
 	})
 
-    useEffect(() => {
-        console.log("address changed contextapi:",address)
-    }, [address])
+ 
 
     return (
         <AddressContext.Provider value={{ address, setAddress }}>

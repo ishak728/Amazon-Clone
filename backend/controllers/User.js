@@ -156,7 +156,7 @@ const verifyToken = async (req, res) => {
     res.status(500).json(error)
   }
 }
-
+ 
 const addAdress = async (req, res) => {
 
   const { userId, address } = req.body

@@ -5,12 +5,12 @@ import DealsBox from "../../component/dealsBox/DealsBox";
 import styles from "./Style";
 import Line from "../../component/line/Line";
 import Modal from 'react-native-modal';
-import { useState, useEffect ,useContext} from "react";
+import { useState, useEffect ,useContext,useCallback} from "react";
 import Fontisto from '@expo/vector-icons/Fontisto';
 import Entypo from '@expo/vector-icons/Entypo';
 import BottomAdressBox from "../../component/bottomAdressBox/BottomAdressBox";
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation,useFocusEffect } from "@react-navigation/native";
 import { getUserId } from "../../utils/AsyncStorage";
 import { getAddress } from "../../services/UserService";
 import { AddressContext } from "../../contextApi/AddressContext";
@@ -236,9 +236,12 @@ const Home = () => {
 
     }
 
-    useEffect(() => {
-        get()
-    }, [])
+    useFocusEffect(
+        useCallback(() => {
+            console.log('Ekran odaklandı!');
+            get()
+        }, [])
+    )
 
     useEffect(() => {
 

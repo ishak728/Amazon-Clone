@@ -26,21 +26,7 @@ const MyTab = () => {
                     position: 'absolute',
                 },
             }}>
-            <Tab.Screen name='ProfileStack' component={ProfileStack}
-                options={{
-                    tabBarLabel: "",
-                    headerShown: false,
-                    tabBarIcon: ({ focused }) =>
-                        focused ? (
-                            <Ionicons name="person-outline" size={24} color="#008E97" />
-                        ) : (
-                            <Ionicons name="person-outline" size={24} color="black" />
-                        ),
 
-
-                }}
-
-            />
             <Tab.Screen name='Main' component={Main}
                 options={{
                     tabBarLabel: "",
@@ -65,6 +51,22 @@ const MyTab = () => {
                         ) : (
                             <Ionicons name="play-circle-outline" size={24} color="black" />
                         ),
+                }}
+
+            />
+
+            <Tab.Screen name='ProfileStack' component={ProfileStack}
+                options={{
+                    tabBarLabel: "",
+                    headerShown: false,
+                    tabBarIcon: ({ focused }) =>
+                        focused ? (
+                            <Ionicons name="person-outline" size={24} color="#008E97" />
+                        ) : (
+                            <Ionicons name="person-outline" size={24} color="black" />
+                        ),
+
+
                 }}
 
             />

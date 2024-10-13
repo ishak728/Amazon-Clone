@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native"
 import Line from "../../component/line/Line"
 import Feather from '@expo/vector-icons/Feather';
-import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useEffect, useState,useCallback } from "react";
 import { getAddress } from "../../services/UserService";
 import { getUserId } from "../../utils/AsyncStorage";
 import AddressBox from "../../component/addressBox/AddressBox";
@@ -14,35 +14,38 @@ import { ScrollView } from "react-native-gesture-handler";
 const Addresses = () => {
     const [addresses, setAddresses] = useState([])
     const [loading, setLoading] = useState(true)
-    const navigation=useNavigation()
+    const navigation = useNavigation()
 
     const get = async () => {
-         
+
         const userId = await getUserId()
-        const addresses = await getAddress(userId) 
+        const addresses = await getAddress(userId)
         setAddresses(addresses)
-       
+
     }
 
-    useEffect(()=>{
-get()
-    },[])
+    useFocusEffect(
+        useCallback(() => {
+           
+            get()
+        }, [])
+    )
 
-  useEffect(()=>{
+    useEffect(() => {
 
-    if(addresses){
-        setLoading(false)
+        if (addresses) {
+            setLoading(false)
+        }
+    }, [addresses])
+
+    if (loading) {
+        return <ActivityIndicator size="large" color="#0000ff" />; // Yükleniyor gösterimi
     }
-  },[addresses])
-
-  if (loading) {
-    return <ActivityIndicator size="large" color="#0000ff" />; // Yükleniyor gösterimi
-}
 
 
     return (
 
-        <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 10,backgroundColor:"#ffffff" }}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 10, backgroundColor: "#ffffff" ,paddingBottom:80}}>
             <Text style={{ fontSize: 25, fontWeight: "bold" }}>Your Addresses</Text>
             <Line />
             <TouchableOpacity onPress={() => { navigation.navigate("DetailAddress") }}>
@@ -64,7 +67,7 @@ get()
                 </View>
             </TouchableOpacity>
             <Line />
-            <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom:15 }}>Personal Addresses</Text>
+            <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 15 }}>Personal Addresses</Text>
 
             {
                 addresses.length > 0 ? (

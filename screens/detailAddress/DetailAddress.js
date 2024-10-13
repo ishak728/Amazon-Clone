@@ -34,7 +34,7 @@ const DetailAddress = () => {
             const userId = await getUserId()
 
             const address = {
-                country, fullName, phone, streetAdd, building, city, state, zipCode
+                country, fullName, phone, street:streetAdd, building, city, state,postalCode: zipCode
             }
 
             try {

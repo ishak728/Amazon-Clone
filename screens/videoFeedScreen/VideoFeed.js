@@ -3,7 +3,7 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 
 const VideoFeed = () => {
-  const [isModalVisible, setModalVisible] = useState(true);
+  const [isModalVisible, setModalVisible] = useState(false);
 
    
 

@@ -9,7 +9,7 @@ const AccountInfoBox = ({ title, state, setState, isShowPassword = true }) => {
 
 
             <View>
-                <TextInput
+                <TextInput testID="textInput"
                     style={  styles.box }
                     value={state}
                     onChangeText={(value) => setState(value)}

@@ -1,10 +1,10 @@
-import { View, Text, Alert } from "react-native"
+import { View, Text, Alert ,TouchableOpacity} from "react-native"
 import AccountInfoBox from "../../component/accountInfoBox/AccountInfoBox"
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
+ 
 import { useNavigation } from "@react-navigation/native";
 import { createUser, signIn, verifyToken } from "../../services/UserService"
  
@@ -33,7 +33,7 @@ const SignUp = () => {
             verify()
     
 
-    }, [ ])
+    }, [ ]) 
 
     const verify = async () => {
         const token = await AsyncStorage.getItem("token", token)
@@ -48,6 +48,7 @@ const SignUp = () => {
             }
         } catch (error) {
             console.log(error.response.status)
+         
 
         }
     }
@@ -64,9 +65,10 @@ const SignUp = () => {
                     const data = await createUser(fullName, email, password)
                    
                     setIsCreateAccount(true)
-                    Alert.alert("Thanks")
+                    Alert.alert("Thanks"  )
                 } catch (error) {
                     console.log("!!!", error)
+                    Alert.alert("Error"  )
                 }
 
 
@@ -88,7 +90,7 @@ const SignUp = () => {
 
                     //navigate to home screen
                 } catch (error) {
-                    console.log("!!!", error)
+                    console.log("!!!n", error)
                 }
                 //navigation.navigate("VerifyEmail")
             }
@@ -129,9 +131,9 @@ const SignUp = () => {
                             </View>
                         </TouchableOpacity>
 
-                        <AccountInfoBox title="First and last name" state={fullName} setState={setFullName} />
-                        <AccountInfoBox title="Mobile number or email" state={email} setState={setEmail} />
-                        <AccountInfoBox title="Create a password" state={password} setState={setpassword} isShowPassword={isShowPassword} />
+                        <AccountInfoBox testID="First and last name" title="First and last name" state={fullName} setState={setFullName} />
+                        <AccountInfoBox testID="Mobile number or email" title="Mobile number or email" state={email} setState={setEmail} />
+                        <AccountInfoBox testID="Create a password" title="Create a password" state={password} setState={setpassword} isShowPassword={isShowPassword} />
 
                         <TouchableOpacity style={{ marginBottom: 10 }} onPress={() => { setIsShowPassword(!isShowPassword) }}>
 
@@ -146,7 +148,7 @@ const SignUp = () => {
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity onPress={() => handleContinue()} style={{ backgroundColor: "#ffd815", height: 50, justifyContent: "center", alignItems: "center", borderRadius: 10, marginBottom: 30 }}>
+                        <TouchableOpacity testID="continue" onPress={() => handleContinue()} style={{ backgroundColor: "#ffd815", height: 50, justifyContent: "center", alignItems: "center", borderRadius: 10, marginBottom: 30 }}>
                             <Text>Continue</Text>
                         </TouchableOpacity>
 
@@ -191,8 +193,8 @@ const SignUp = () => {
                                 </View>
                             </TouchableOpacity>
 
-                            <AccountInfoBox title="Email or phone number" state={emailSignIn} setState={setEmailSignIn} />
-                            <AccountInfoBox title="Amazon password" state={passwordSignIn} setState={setpasswordSignIn} isShowPassword={isShowPassword} />
+                            <AccountInfoBox  testID="Email or phone number" title="Email or phone number" state={emailSignIn} setState={setEmailSignIn} />
+                            <AccountInfoBox  testID="Amazon password" title="Amazon password" state={passwordSignIn} setState={setpasswordSignIn} isShowPassword={isShowPassword} />
 
                             {/* {isShowPassword && (
                                 <View style={{ marginBottom: 10 }}>
@@ -225,7 +227,7 @@ const SignUp = () => {
                             </TouchableOpacity>
 
 
-                            <TouchableOpacity onPress={() => handleContinue()} style={{ backgroundColor: "#ffd815", height: 50, justifyContent: "center", alignItems: "center", borderRadius: 10, marginBottom: 30 }}>
+                            <TouchableOpacity testID="continue" onPress={() => handleContinue()} style={{ backgroundColor: "#ffd815", height: 50, justifyContent: "center", alignItems: "center", borderRadius: 10, marginBottom: 30 }}>
                                 <Text>Continue</Text>
                             </TouchableOpacity>
 

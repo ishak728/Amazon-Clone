@@ -2,14 +2,14 @@
 import { View, Text, TextInput } from "react-native"
 import styles from "./Style"
 
-const AccountInfoBox = ({ title, state, setState, isShowPassword = true }) => {
+const AccountInfoBox = ({testID="textInput", title, state, setState, isShowPassword = true }) => {
     return (
         <View style={styles.container}  >
             <Text style={styles.title}>{title}</Text>
 
 
             <View>
-                <TextInput testID="textInput"
+                <TextInput testID={testID}
                     style={  styles.box }
                     value={state}
                     onChangeText={(value) => setState(value)}

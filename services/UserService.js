@@ -27,7 +27,7 @@ export const signIn=async( email,password)=>{
         return response.data
         
     } catch (error) {
-        console.log(error)
+        console.log(error,)
         throw error 
     }
 }

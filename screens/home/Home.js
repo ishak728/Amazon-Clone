@@ -1,5 +1,4 @@
-import { View, Text, Dimensions, StyleSheet, Alert, Image, Pressable } from "react-native";
-import { ScrollView, TouchableOpacity, TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { View, Text, Dimensions,  Alert, Image,  ScrollView, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import DealsBox from "../../component/dealsBox/DealsBox";
 import styles from "./Style";

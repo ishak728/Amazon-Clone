@@ -9,12 +9,7 @@ import React, { useContext, useEffect } from 'react';
 const AddressBox = ({ item }) => {
     const { width } = Dimensions.get("window")
     const { address, setAddress } = useContext(AddressContext)
-
- 
-
-
-
-
+    
     const edit = () => {
         console.log("adsf")
     }

@@ -57,7 +57,7 @@ describe("AccountInfoBox", () => {
         expect(textInput).toBeTruthy()
         fireEvent.changeText(textInput, "ishak")
         expect(getByDisplayValue("ishak")).toBeTruthy()
-        console.log(textInput.props.value)
+        // console.log(textInput.props.value)
         expect(textInput.props.value).toBe("ishak")
 
     })

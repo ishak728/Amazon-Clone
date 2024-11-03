@@ -3,19 +3,21 @@ import { Pressable, View, Image, Alert, Text } from "react-native"
 
 
 const DealsBox = ({ item, isFromDeals = true }) => {
-    const navigation=useNavigation()
-    
+    const navigation = useNavigation()
+
     const handle = () => {
-        navigation.navigate("Detail",{item})
+        navigation.navigate("Detail", { item })
     }
 
     return (
         <Pressable
+        testID="Pressable"
             onPress={handle}
             style={{ margin: 5 }}
         >
             <View>
                 <Image
+                testID="Image"
                     style={{ height: 200, width: 170 }}
                     source={{ uri: item.image }}
 
@@ -32,22 +34,22 @@ const DealsBox = ({ item, isFromDeals = true }) => {
 
                     </View>) :
 
-                    <View style={{  marginVertical: 10 }}>
-                        <Text numberOfLines={1} 
-                        ellipsizeMode="tail"
-                         style={{ padding: 2, marginRight: 5, fontSize: 10 , fontWeight: "bold",width:170 }}>
-                           {item.title}
+                    <View style={{ marginVertical: 10 }}>
+                        <Text numberOfLines={1}
+                            ellipsizeMode="tail"
+                            style={{ padding: 2, marginRight: 5, fontSize: 10, fontWeight: "bold", width: 170 }}>
+                            {item.title}
                         </Text>
-                        
-                        <Text style={{ padding: 2, marginRight: 5, fontWeight:"500"}}>
+
+                        <Text style={{ padding: 2, marginRight: 5, fontWeight: "500" }}>
                             ${item.price}
                         </Text>
-                        
 
-                    </View>
+
+                    </View> 
                 }
             </View>
-            
+
         </Pressable>
     )
 }

@@ -6,7 +6,7 @@ import BASE_URL from "../constants/Constants"
 
 export const createUser=async(fullName,email,password)=>{
     try {
-        const response=await axios.post('http://192.168.1.144:3000/user/create',{
+        const response=await axios.post(`${BASE_URL}/user/create`,{
             fullName,email,password
         })
         return response.data

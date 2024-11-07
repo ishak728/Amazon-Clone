@@ -9,10 +9,10 @@ const userRoute=require("./routes/User.js")
 const orderRoute=require("./routes/Order.js")
 const User = require("./model/User.js")
 
-const app = express()//http://192.168.1.144:3000
+const app = express()
 const PORT = 3000
 app.use(bodyParser.json())
-app.use(cors())
+app.use(cors()) 
 //middleware
 app.use(express.json())
 

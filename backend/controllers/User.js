@@ -23,12 +23,12 @@ const sendVerificationEmail = (email, verificationToken) => {
     from: 'ishk23ishk@gmail.com',
     to: email,
     subject: 'Email Verification', // Subject
-    // text:` Please verify your email using this token: http://192.168.1.144:3000/user/verify/${verificationToken}`,
+    // text:` Please verify your email using this token: http://192/user/verify/${verificationToken}`,
     html: `
         <div style="font-family: Arial, sans-serif; text-align: center; padding: 20px;">
           <h2>Email Verification</h2>
           <p>Please click the button below to verify your email address:</p>
-          <a href="http://192.168.1.144:3000/user/verify/${verificationToken}" style="padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">
+          <a href="http://192.168.1.135:3000/user/verify/${verificationToken}" style="padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">
             Verify Email
           </a>
           <p>If you do not verify your email, your account will not be created.</p>

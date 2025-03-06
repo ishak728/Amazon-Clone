@@ -98,8 +98,8 @@ Here are some screenshots of the application:
     <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/5.png" width="200"/></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/4.png" width="200"/></td>
     <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/3.png" width="200"/></td>
+    <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/4.png" width="200"/></td>
     <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/2.png" width="200"/></td>
   </tr>
   <tr>

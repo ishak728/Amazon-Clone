@@ -24,6 +24,7 @@ This project includes full e-commerce functionality such as authentication, prod
 # Tech Stack
 
 # `Frontend`
+- `JavaScript`
 
 - `React Native`
 

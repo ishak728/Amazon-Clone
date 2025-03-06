@@ -91,81 +91,26 @@ Here are some screenshots of the application:
 
 
 
- <table>
+<table>
   <tr>
-    <td>
-      <figure>
-        <img src="https://github.com/ishak728/Amazon-Clone/blob/master/1.png" width="200"/>
-        <figcaption>1</figcaption>
-      </figure>
-    </td>
-    <td>
-      <figure>
-        <img src="https://github.com/ishak728/Amazon-Clone/blob/master/2.png" width="200"/>
-        <figcaption>2</figcaption>
-      </figure>
-    </td>
-    <td>
-      <figure>
-        <img src="https://github.com/ishak728/Amazon-Clone/blob/master/3.png" width="200"/>
-        <figcaption>3</figcaption>
-      </figure>
-    </td>
+    <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/1.png" width="200"/></td>
+    <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/6.png" width="200"/></td>
+    <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/5.png" width="200"/></td>
   </tr>
   <tr>
-    <td>
-      <figure>
-        <img src="https://github.com/ishak728/Amazon-Clone/blob/master/4.png" width="200"/>
-        <figcaption>4</figcaption>
-      </figure>
-    </td>
-    <td>
-      <figure>
-        <img src="https://github.com/ishak728/Amazon-Clone/blob/master/5.png" width="200"/>
-        <figcaption>5</figcaption>
-      </figure>
-    </td>
-    <td>
-      <figure>
-        <img src="https://github.com/ishak728/Amazon-Clone/blob/master/6.png" width="200"/>
-        <figcaption>6</figcaption>
-      </figure>
-    </td>
+    <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/4.png" width="200"/></td>
+    <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/3.png" width="200"/></td>
+    <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/2.png" width="200"/></td>
   </tr>
   <tr>
-    <td>
-      <figure>
-        <img src="https://github.com/ishak728/Amazon-Clone/blob/master/7.png" width="200"/>
-        <figcaption>7</figcaption>
-      </figure>
-    </td>
-    <td>
-      <figure>
-        <img src="https://github.com/ishak728/Amazon-Clone/blob/master/8.png" width="200"/>
-        <figcaption>8</figcaption>
-      </figure>
-    </td>
-    <td>
-      <figure>
-        <img src="https://github.com/ishak728/Amazon-Clone/blob/master/9.png" width="200"/>
-        <figcaption>9</figcaption>
-      </figure>
-    </td>
+    <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/7.png" width="200"/></td>
+    <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/8.png" width="200"/></td>
+    <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/9.png" width="200"/></td>
   </tr>
   <tr>
-    <td>
-      <figure>
-        <img src="https://github.com/ishak728/Amazon-Clone/blob/master/10.png" width="200"/>
-        <figcaption>10</figcaption>
-      </figure>
-    </td>
-    <td>
-      <figure>
-        <img src="https://github.com/ishak728/Amazon-Clone/blob/master/11.png" width="200"/>
-        <figcaption>11</figcaption>
-      </figure>
-    </td>
-    <td></td> <!-- empty -->
+    <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/10.png" width="200"/></td>
+    <td><img src="https://github.com/ishak728/Amazon-Clone/blob/master/11.png" width="200"/></td>
+    <td></td> <!-- Boş bırakılan hücre -->
   </tr>
 </table>
 

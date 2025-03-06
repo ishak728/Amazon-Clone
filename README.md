@@ -87,6 +87,7 @@ STRIPE_SECRET_KEY=your_stripe_key
 
 # `Screenshots`
 
+
 Here are some screenshots of the application:
 
 
@@ -114,6 +115,10 @@ Here are some screenshots of the application:
   </tr>
 </table>
 
+# `Videos`
+[🎥 Amazon Clone Overview 1](https://www.linkedin.com/posts/ishak-erdogan-67a5812a6_opentojob-reactnative-nodejs-activity-7245893490637705216-PQbP?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEnEbn4B9bI3-M7l3FPWlx5DMf8HPQTOnA4)
+[🎥 WAmazon Clone Overview 2](https://www.linkedin.com/posts/ishak-erdogan-67a5812a6_amazonclone-reactnative-opentojob-activity-7247413996138426368-tgr7?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEnEbn4B9bI3-M7l3FPWlx5DMf8HPQTOnA4)
+[🎥 Amazon Clone Overview 3](https://www.linkedin.com/posts/ishak-erdogan-67a5812a6_jobseeking-amazonclone-reactnative-activity-7251361812535808000-6jWD?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEnEbn4B9bI3-M7l3FPWlx5DMf8HPQTOnA4)
 
 
 

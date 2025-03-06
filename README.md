@@ -37,6 +37,7 @@ This project includes full e-commerce functionality such as authentication, prod
 - `AsyncStorage`
 
 - `React Native Gesture Handler & Reanimated`
+- `Tests`
 
 # `Backend`
 
